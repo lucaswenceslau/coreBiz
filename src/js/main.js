@@ -42,7 +42,7 @@ function getSinblings(el){
 }
 
 function createShelves(){
-    const url = 'https://github.com/meetrodrigues/coreBiz/blob/master/products.json';
+    const url = 'https://meetrodrigues.github.io/coreBiz/products.json';
     fetch(url)
         .then(res => res.json())
         .then((data)=>{
