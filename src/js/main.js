@@ -31,7 +31,7 @@ function addToCartValue(){
     cart.forEach(el => {
         el.addEventListener('click',function(){
            valueCart += parseFloat(getSinblings(el));
-           valueText.textContent = 'R$'+valueCart.toLocaleString();
+           valueText.textContent = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valueCart);
         })
     });
 }
@@ -44,9 +44,10 @@ function getSinblings(el){
 			siblings.push(sibling);
         }
         sibling = sibling.nextSibling
-	}
-    return parseFloat(siblings[2].textContent);
+    }
+    return parseFloat(siblings[2].textContent.split('R$')[1]);
 }
+
 function verifyMobile(){
     const menu = document.querySelector('.menu');
 
@@ -75,7 +76,7 @@ function createShelves(){
                     `
                     <img class="product__list__container--img" src="${srcImage}">
                     <p class="product__list__container--title">${el.name}</p>
-                    <p class="product__list__container--value"> ${el.Value} </p>
+                    <p class="product__list__container--value">R$${el.Value} </p>
                     <button class="product__list__container--buy"> Comprar </button>
                     `
                     append(shelve,product)
