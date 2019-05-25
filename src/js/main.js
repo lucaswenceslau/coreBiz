@@ -11,6 +11,14 @@ function clickActive(active){
     element.classList.toggle('active');
     })
 }
+function menuMobileActive(){
+    const menuMobile = document.querySelector('.menu--mobile');
+    const menuItens = document.querySelector('.menu');
+    menuMobile.addEventListener('click',function(){
+        menuMobile.classList.toggle('active');
+        menuItens.classList.toggle('active');
+    })
+}
 function addToCartCreate(parent,classe){
     const span = createNode('span');
     span.setAttribute('class',classe);
@@ -24,7 +32,6 @@ function addToCartValue(){
         el.addEventListener('click',function(){
            valueCart += parseFloat(getSinblings(el));
            valueText.textContent = 'R$'+valueCart.toLocaleString();
-           console.log(valueCart)
         })
     });
 }
@@ -40,7 +47,17 @@ function getSinblings(el){
 	}
     return parseFloat(siblings[2].textContent);
 }
+function verifyMobile(){
+    const menu = document.querySelector('.menu');
 
+    if(window.innerWidth < 1020){
+        menu.classList.add('is--mobile');
+    }
+    else{
+        menu.classList.remove('is--mobile');
+    }   
+
+}
 function createShelves(){
     const url = '../../products.json';
     fetch(url)
@@ -75,6 +92,8 @@ function createShelves(){
 
 window.addEventListener('DOMContentLoaded',function(){
     createShelves();
-    clickActive('.menu--mobile');
     clickActive('.header__container--cart');
+    verifyMobile();
+    menuMobileActive();
 });
+
