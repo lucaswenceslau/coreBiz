@@ -59,11 +59,10 @@ function verifyMobile(){
 
 }
 function createShelves(){
-    const url = '../../products.json';
+    const url = 'https://meetrodrigues.github.io/coreBiz/products.json';
     fetch(url)
         .then(res => res.json())
         .then((data)=>{
-            console.log('data: ',data)
             const shelve = document.querySelector('.product__list');
             for (const i in data) {
                 if (data.hasOwnProperty(i)) {
